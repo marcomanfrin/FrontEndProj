@@ -1,5 +1,14 @@
+import NewBivaccoForm from "../components/NewBivaccoForm"
+
 const Admin = () => {
-  return <div>Admin Component</div>
+  return (
+    <>
+      <NewBivaccoForm />
+    </>
+    
+
+  )
+
 }
 
 export default Admin

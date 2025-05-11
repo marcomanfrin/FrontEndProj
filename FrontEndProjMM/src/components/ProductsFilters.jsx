@@ -29,9 +29,8 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
           })
         }}
       >
-        <option value="jewelery">Jewelery</option>
-        <option value="men's clothing">Men's clothing</option>
-        <option value="electronics">Electronics</option>
+        <option value="jewelery">Bivacco</option>
+        <option value="men's clothing">Rifugio</option>
       </select>
       <label htmlFor="search-input">Search: </label>
       <input

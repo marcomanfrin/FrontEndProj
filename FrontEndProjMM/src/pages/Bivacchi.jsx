@@ -1,87 +1,81 @@
-import { useEffect, useState } from "react"
-import { PacmanLoader } from "react-spinners"
-import { Alert } from "react-bootstrap"
-import Product from "../components/Product"
-import ProductsFilters from "../components/ProductsFilters"
-import NewComponentForm from "../components/NewComponentForm"
-import Navbar from "../layout/Navbar"
-import { useSearchParams } from "react-router"
+import { useEffect, useState } from "react";
+import { PacmanLoader } from "react-spinners";
+import { Alert, Container, Row, Col } from "react-bootstrap";
+import Product from "../components/Product";
+import ProductsFilters from "../components/ProductsFilters";
+import NewComponentForm from "../components/NewComponentForm";
+import { useSearchParams } from "react-router";
+import './ComponentLayout.css';
 
 const Bivacchi = () => {
-  const [isNewProduct, _] = useState(false)
-  const [products, setProducts] = useState([])
-  const [selectedProduct, setSelectedProduct] = useState(null)
-  const [showProducts, setShowProducts] = useState(true)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [isNewProduct, _] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showProducts, setShowProducts] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Teniamo traccia tramite stato dello stato dei filtri di <ProductsFilters>
-  // const [limit, setLimit] = useState(20)
-  // const [category, setCategory] = useState("")
-  // const [search, setSearch] = useState("")
-
-  // Refactor con Search Parameters al posto dello state
-  const [searchParams, setSearchParams] = useSearchParams()
-
-  const limit = searchParams.get("limit") || 20
-  const category = searchParams.get("category") || ""
-  const search = searchParams.get("search") || ""
+  const [searchParams, setSearchParams] = useSearchParams();
+  const limit = searchParams.get("limit") || 20;
+  const category = searchParams.get("category") || "";
+  const search = searchParams.get("search") || "";
 
   const fetchProducts = async () => {
     try {
-      let url = "http://localhost:3001/products?limit=" + limit
-      if (category) url += "&category=" + category
-      if (search) url += "&title=" + search
+      let url = `http://localhost:3001/bivacchi?limit=${limit}`;
+      if (category) url += `&category=${category}`;
+      if (search) url += `&title=${search}`;
 
-      setLoading(true)
-      const response = await fetch(url)
-      const products = await response.json()
-      if (!response.ok) throw new Error("HTTP ERROR!")
-      setProducts(products)
+      setLoading(true);
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!response.ok) throw new Error("HTTP ERROR!");
+      setProducts(data);
     } catch (error) {
-      console.log(error)
-      setError("Errore durante il fetch dei prodotti")
+      console.error(error);
+      setError("Errore durante il fetch dei prodotti");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchProducts()
-  }, [limit, category])
+    fetchProducts();
+  }, [limit, category, search]);
 
-  const handleSelect = selected => {
-    setSelectedProduct(selected)
-  }
+  const handleSelect = selected => setSelectedProduct(selected);
 
-  if (isNewProduct) return <NewComponentForm />
+  if (isNewProduct) return <NewComponentForm />;
 
   return (
     <>
-      <ProductsFilters
-        fetchProducts={fetchProducts}
-        // setLimit={setLimit}
-        // setCategory={setCategory}
-        // setSearch={setSearch}
-        setSearchParams={setSearchParams}
-      />
-      {loading && <PacmanLoader />}
-      {error && <Alert>❌ Error: {error}</Alert>}
-      {!error && (
-        <button
-          onClick={() => {
-            setShowProducts(() => !showProducts)
-          }}
-        >
-          SHOW PRODUCTS
-        </button>
+      <div className="my-4">
+        <ProductsFilters fetchProducts={fetchProducts} setSearchParams={setSearchParams} />
+      </div>
+
+      {loading && (
+        <div className="text-center my-4">
+          <PacmanLoader />
+        </div>
       )}
 
-      {!error && showProducts && products.length > 0
-        ? products.map(product => <Product key={product.id} {...product} selectedProduct={selectedProduct} handleSelect={handleSelect} />)
-        : !error && <div>NO PRODUCTS FOUND</div>}
-    </>
-  )
-}
+      {error && <Alert variant="danger" className="text-center">❌ {error}</Alert>}
 
-export default Bivacchi
+      {!error && showProducts && products.length > 0 ? (
+        <Container className="component-container mt-4">
+          <Row>
+            {products.map(product => (
+              <Col key={product.id} md={6} lg={4} className="mb-4">
+                <Product {...product} selectedProduct={selectedProduct} handleSelect={handleSelect} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      ) : !loading && !error ? (
+        <div className="text-center mt-4">NO PRODUCTS FOUND</div>
+      ) : null}
+    </>
+  );
+};
+
+export default Bivacchi;

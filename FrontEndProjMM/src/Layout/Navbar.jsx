@@ -24,6 +24,9 @@ function Navbar() {
         <NavLink to="/admin" style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}>
           Admin
         </NavLink>
+        <NavLink to="/profile" style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}>
+          Il tuo Profilo
+        </NavLink>
         <NavLink to="/login" style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}>
           Login
         </NavLink>

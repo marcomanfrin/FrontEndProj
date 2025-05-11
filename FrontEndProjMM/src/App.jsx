@@ -8,6 +8,7 @@ import Admin from "./pages/Admin"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProductDetail from "./pages/ProductDetail"
+import Profile from "./pages/Profile"
 import Layout from "./layout/Layout"
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
         <Route path="/Bivacchi" element={<Bivacchi />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+
       </Route>
       {/* Grazie al Nested Routing posso raggruppare quali pagine debbano condividere delle componenti UI di layout "fisse" */}
       <Route path="*" element={<NotFound />} />
