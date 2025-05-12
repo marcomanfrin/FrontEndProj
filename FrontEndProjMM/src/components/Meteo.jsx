@@ -83,7 +83,6 @@ const WeatherCard = ({ title, data }) => (
   </div>
 );
 
-
   return (
     <div className="d-flex overflow-auto px-3 py-2">
       {forecast.map((day) => (
