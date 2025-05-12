@@ -2,7 +2,7 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
   return (
     <div>
       <label htmlFor="limit-select">Products per page:</label>
-      <select
+      <select 
         id="limit-select"
         onChange={event => {
           // setSearchParams({ limit: event.target.value }) // Se passo un oggetto e basta, sto sovrascrivendo i query parameters pre-esistenti
@@ -15,11 +15,13 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
         }}
       >
 
+        <option value="">-</option>
         <option value="1">1</option>
         <option value="6">6</option>
         <option value="12">12</option>
         <option value="18">18</option>
       </select>
+
       <label htmlFor="category-select">Category:</label>
       <select
         id="category-select"
@@ -30,9 +32,12 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
           })
         }}
       >
+
+        <option value="">-</option>
         <option value="Bivacco">Bivacco</option>
         <option value="Rifugio">Rifugio</option>
       </select>
+
       <label htmlFor="search-input">Search: </label>
       <input
         id="search-input"

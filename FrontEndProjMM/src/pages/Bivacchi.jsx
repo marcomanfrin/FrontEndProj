@@ -22,9 +22,9 @@ const Bivacchi = () => {
 
   const fetchProducts = async () => {
     try {
-      let url = `http://localhost:3001/bivacchi?limit=${limit}`;
+      let url = `http://localhost:3001/bivacchi?_limit=${limit}`;
       if (category) url += `&category=${category}`;
-      if (search) url += `&title=${search}`;
+      if (search) url += `&q=${encodeURIComponent(search)}`;
 
       setLoading(true);
       const response = await fetch(url);
