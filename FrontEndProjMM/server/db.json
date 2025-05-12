@@ -13,9 +13,22 @@
       "maxHeight": "2667 m",
       "image": "https://www.dolomitireview.com/wp-content/uploads/2020/09/bivacco-fanton-marmarole.jpg",
       "comments": [
-        { "id": 1, "text": "Vista spettacolare, uno dei bivacchi più belli!" },
-        { "id": 2, "text": "Salita impegnativa ma ne vale assolutamente la pena." },
-        { "id": 3, "text": "Struttura moderna e posizione incantevole." }
+        {
+          "id": 1,
+          "text": "Vista spettacolare, uno dei bivacchi più belli!"
+        },
+        {
+          "id": 2,
+          "text": "Salita impegnativa ma ne vale assolutamente la pena."
+        },
+        {
+          "id": 3,
+          "text": "Struttura moderna e posizione incantevole."
+        },
+        {
+          "id": 4,
+          "text": "test aggiunta commento"
+        }
       ]
     },
     {
@@ -31,9 +44,18 @@
       "maxHeight": "2405 m",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvrVE_H0sk_gDWinuJUHNaRWhXanu2zEklEg&s",
       "comments": [
-        { "id": 1, "text": "Location perfetta per ammirare le Tre Cime!" },
-        { "id": 2, "text": "Rifugio accogliente e ben tenuto." },
-        { "id": 3, "text": "Consigliato anche per famiglie con bambini." }
+        {
+          "id": 1,
+          "text": "Location perfetta per ammirare le Tre Cime!"
+        },
+        {
+          "id": 2,
+          "text": "Rifugio accogliente e ben tenuto."
+        },
+        {
+          "id": 3,
+          "text": "Consigliato anche per famiglie con bambini."
+        }
       ]
     },
     {
@@ -49,9 +71,22 @@
       "maxHeight": "2000 m",
       "image": "https://www.caidueville.it/images/img_eventi/12_bivacco_Argentino_Vanin.jpg",
       "comments": [
-        { "id": 1, "text": "Posto tranquillo e silenzioso, perfetto per una pausa rigenerante." },
-        { "id": 2, "text": "Molto curato, si sente la passione di chi lo mantiene." },
-        { "id": 3, "text": "Paesaggi stupendi lungo tutto il sentiero." }
+        {
+          "id": 1,
+          "text": "Posto tranquillo e silenzioso, perfetto per una pausa rigenerante."
+        },
+        {
+          "id": 2,
+          "text": "Molto curato, si sente la passione di chi lo mantiene."
+        },
+        {
+          "id": 3,
+          "text": "Paesaggi stupendi lungo tutto il sentiero."
+        },
+        {
+          "id": 4,
+          "text": "che bel sentiero"
+        }
       ]
     },
     {
@@ -67,9 +102,18 @@
       "maxHeight": "2000 m",
       "image": "https://www.visittrentino.info/2016/248389/image-thumb__248389__contentgallery-wide/bivacco-paolo-e-nicola.jpg",
       "comments": [
-        { "id": 1, "text": "Bivacco accogliente in un luogo spettacolare." },
-        { "id": 2, "text": "Ideale per una notte sotto le stelle." },
-        { "id": 3, "text": "Facile da raggiungere, paesaggi mozzafiato." }
+        {
+          "id": 1,
+          "text": "Bivacco accogliente in un luogo spettacolare."
+        },
+        {
+          "id": 2,
+          "text": "Ideale per una notte sotto le stelle."
+        },
+        {
+          "id": 3,
+          "text": "Facile da raggiungere, paesaggi mozzafiato."
+        }
       ]
     },
     {
@@ -85,9 +129,18 @@
       "maxHeight": "2000 m",
       "image": "https://i0.wp.com/www.dolomitireview.com/wp-content/uploads/2022/05/bivacco_bedin4-1.jpg?resize=1920%2C1081&ssl=1",
       "comments": [
-        { "id": 1, "text": "Posto da favola, ideale per fotografare il tramonto." },
-        { "id": 2, "text": "Camminata semplice, ambiente rilassante." },
-        { "id": 3, "text": "Ben segnalato e in ottimo stato." }
+        {
+          "id": 1,
+          "text": "Posto da favola, ideale per fotografare il tramonto."
+        },
+        {
+          "id": 2,
+          "text": "Camminata semplice, ambiente rilassante."
+        },
+        {
+          "id": 3,
+          "text": "Ben segnalato e in ottimo stato."
+        }
       ]
     },
     {
@@ -103,9 +156,18 @@
       "maxHeight": "4003 m",
       "image": "https://www.sac-cas.ch/processed/assets_alps/0/c/csm_8850_2488_SolvayBiwak_7d258e5407.jpg",
       "comments": [
-        { "id": 1, "text": "Esperienza unica, riservata ai veri amanti della montagna." },
-        { "id": 2, "text": "Raggiungerlo è un'impresa, ma lo spettacolo ripaga tutto." },
-        { "id": 3, "text": "Da brividi! Una notte qui è indimenticabile." }
+        {
+          "id": 1,
+          "text": "Esperienza unica, riservata ai veri amanti della montagna."
+        },
+        {
+          "id": 2,
+          "text": "Raggiungerlo è un'impresa, ma lo spettacolo ripaga tutto."
+        },
+        {
+          "id": 3,
+          "text": "Da brividi! Una notte qui è indimenticabile."
+        }
       ]
     },
     {
@@ -121,36 +183,58 @@
       "maxHeight": "888 m",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGrJoyIdRza1OunJaitq1UgLC3PzoS_XYdzA&s",
       "comments": [
-        { "id": 1, "text": "Posto tranquillo e perfetto per una breve fuga nella natura." },
-        { "id": 2, "text": "Facile da raggiungere, molto carino anche per famiglie." }
+        {
+          "id": 1,
+          "text": "Posto tranquillo e perfetto per una breve fuga nella natura."
+        },
+        {
+          "id": 2,
+          "text": "Facile da raggiungere, molto carino anche per famiglie."
+        }
       ]
     }
   ],
-  
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "firstName": "Admin",
       "lastName": "A",
       "email": "admin@email.com",
       "password": "123",
-      "role": "admin"
+      "role": "admin",
+      "img": "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg?semt=ais_hybrid&w=740",
+      "visited": [
+        1,
+        2,
+        3
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "firstName": "Topolino",
       "lastName": "Topo",
       "email": "topolino@email.com",
       "password": "123",
-      "role": "base"
+      "role": "base",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRPyzZZhS2Fhq__-wplbeePXcbSIqjv1_xGA&s",
+      "visited": [
+        1,
+        5
+      ]
     },
     {
-      "id": 3,
+      "id": "3",
       "firstName": "Paperino",
       "lastName": "Papero",
       "email": "paperino@email.com",
       "password": "123",
-      "role": "base"
+      "role": "base",
+      "img": "https://www.sermig.org/media/articoli/paperino__1653471333_0.jpg",
+      "visited": [
+        6,
+        7,
+        8
+      ]
     }
   ]
 }

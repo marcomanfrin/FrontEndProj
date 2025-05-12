@@ -14,10 +14,11 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
           })
         }}
       >
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
+
+        <option value="1">1</option>
+        <option value="6">6</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
       </select>
       <label htmlFor="category-select">Category:</label>
       <select
@@ -29,8 +30,8 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
           })
         }}
       >
-        <option value="jewelery">Bivacco</option>
-        <option value="men's clothing">Rifugio</option>
+        <option value="Bivacco">Bivacco</option>
+        <option value="Rifugio">Rifugio</option>
       </select>
       <label htmlFor="search-input">Search: </label>
       <input

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import UserCard from '../components/UserCard';
@@ -6,35 +5,59 @@ import ListCard from '../components/ListCard';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
-  const [lists, setLists] = useState([]);
+  const [visitedBivacchi, setVisitedBivacchi] = useState([]);
 
   useEffect(() => {
-    // Simulated data fetch
-    setUser({ firstName: "Mario", lastName: "Rossi", email: "mario.rossi@email.com" });
+    const fetchUserAndVisited = async () => {
+      try {
+        // Simulazione: utente loggato con id = 1
+        const userRes = await fetch('http://localhost:3001/users/2');
+        if (!userRes.ok) throw new Error("Errore caricamento utente");
+        const userData = await userRes.json();
+        setUser(userData);
 
-    setLists([
-      { id: 1, title: "Elenco 1", description: "Descrizione elenco 1" },
-      { id: 2, title: "Elenco 2", description: "Descrizione elenco 2" },
-      { id: 3, title: "Elenco 3", description: "Descrizione elenco 3" },
-    ]);
+        // Recupera tutti i bivacchi
+        const bivacchiRes = await fetch('http://localhost:3001/bivacchi');
+        if (!bivacchiRes.ok) throw new Error("Errore caricamento bivacchi");
+        const allBivacchi = await bivacchiRes.json();
+
+        // Filtra solo quelli visitati
+        const visited = allBivacchi.filter(bivacco =>
+          userData.visited.includes(Number(bivacco.id))
+        );
+        setVisitedBivacchi(visited);
+      } catch (error) {
+        console.error("Errore:", error.message);
+      }
+    };
+
+    fetchUserAndVisited();
   }, []);
 
   return (
     <Container className="mt-5">
       <Row>
-        <Col md={5}> {/* Larger profile section */}
-            {user && <UserCard user={user} />}
+        <Col md={5}>
+          {user && <UserCard user={user} />}
         </Col>
-        <Col md={7}> {/* Smaller list section */}
-            <Row>
-            {lists.map(elenco => (
-                <Col sm={12} md={12} lg={12} key={elenco.id} className="mb-3">
-                <ListCard title={elenco.title} description={elenco.description} />
+        <Col md={7}>
+          <h4 className="mb-3">Bivacchi visitati</h4>
+          <Row>
+            {visitedBivacchi.length > 0 ? (
+              visitedBivacchi.map((bivacco) => (
+                <Col sm={12} key={bivacco.id} className="mb-3">
+                  <ListCard
+                    title={bivacco.title}
+                    description={bivacco.description}
+                  />
                 </Col>
-            ))}
-            </Row>
+              ))
+            ) : (
+              <p>Nessun bivacco visitato ancora.</p>
+            )}
+          </Row>
         </Col>
-        </Row>
+      </Row>
     </Container>
   );
 };
