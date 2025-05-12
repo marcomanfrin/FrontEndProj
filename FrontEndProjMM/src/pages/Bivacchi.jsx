@@ -3,7 +3,6 @@ import { PacmanLoader } from "react-spinners";
 import { Alert, Container, Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import ProductsFilters from "../components/ProductsFilters";
-import NewComponentForm from "../components/NewComponentForm";
 import { useSearchParams } from "react-router";
 import './ComponentLayout.css';
 
