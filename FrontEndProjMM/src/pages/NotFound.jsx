@@ -5,7 +5,7 @@ const NotFound = () => {
   console.log(location)
   return (
     <div>
-      <p>No match found for {location.pathname}</p>
+      <p>404 page '{location.pathname}' not found</p>
       <Link to="/">Back to Home</Link>
     </div>
   )

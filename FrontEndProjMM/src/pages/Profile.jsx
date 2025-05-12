@@ -41,14 +41,13 @@ const Profile = () => {
           {user && <UserCard user={user} />}
         </Col>
         <Col md={7}>
-          <h4 className="mb-3">Bivacchi visitati</h4>
+          <h3 className="mb-3">Bivacchi visitati ({visitedBivacchi.length})</h3>
           <Row>
             {visitedBivacchi.length > 0 ? (
               visitedBivacchi.map((bivacco) => (
                 <Col sm={12} key={bivacco.id} className="mb-3">
                   <ListCard
                     title={bivacco.title}
-                    description={bivacco.description}
                   />
                 </Col>
               ))

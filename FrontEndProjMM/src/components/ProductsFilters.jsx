@@ -16,7 +16,7 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
       >
 
         <option value="">-</option>
-        <option value="1">1</option>
+        <option value="3">3</option>
         <option value="6">6</option>
         <option value="12">12</option>
         <option value="18">18</option>

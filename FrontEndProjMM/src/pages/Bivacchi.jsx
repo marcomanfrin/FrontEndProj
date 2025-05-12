@@ -62,7 +62,6 @@ const Bivacchi = () => {
       {error && <Alert variant="danger" className="text-center">❌ {error}</Alert>}
 
       {!error && showProducts && products.length > 0 ? (
-        <Container className="component-container mt-4">
           <Row>
             {products.map(product => (
               <Col key={product.id} md={6} lg={4} className="mb-4">
@@ -70,7 +69,6 @@ const Bivacchi = () => {
               </Col>
             ))}
           </Row>
-        </Container>
       ) : !loading && !error ? (
         <div className="text-center mt-4">NO PRODUCTS FOUND</div>
       ) : null}
