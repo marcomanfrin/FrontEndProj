@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './ComponentLayout.css';
 
 const API_KEY = "c3540be547721be3d08cf1f24a83a1e1";
 
 export default function Meteo({ location }) {
-  const [weather, setWeather] = useState(null);
+  const [forecast, setForecast] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -12,49 +14,39 @@ export default function Meteo({ location }) {
     const fetchWeather = async () => {
       try {
         const res = await fetch(
-          `api.openweathermap.org/data/2.5/forecast/daily?lat=44.34&lon=10.99&cnt=7&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
         );
         const data = await res.json();
 
         if (data.cod !== "200") {
-          setError("Weather data not found.");
+          setError(`Weather error: ${data.message}`);
           return;
         }
 
-        const today = new Date().getDate();
-        const filtered = data.list.filter((item) => {
-          const itemDate = new Date(item.dt_txt);
-          const isToday = itemDate.getDate() === today;
-          const isTomorrow = itemDate.getDate() === today + 1;
-          return isToday || isTomorrow;
+        // Group data by day
+        const dailyGroups = {};
+        data.list.forEach((item) => {
+          const dateKey = item.dt_txt.split(" ")[0];
+          if (!dailyGroups[dateKey]) dailyGroups[dateKey] = [];
+          dailyGroups[dateKey].push(item);
         });
 
-        const grouped = filtered.reduce(
-          (acc, item) => {
-            const day = new Date(item.dt_txt).getDate();
-            if (day === today) acc.today.push(item);
-            else acc.tomorrow.push(item);
-            return acc;
-          },
-          { today: [], tomorrow: [] }
-        );
+        const groupedForecast = Object.entries(dailyGroups)
+          .slice(0, 5)
+          .map(([date, items]) => {
+            const avgTemp =
+              items.reduce((sum, i) => sum + i.main.temp, 0) / items.length;
+            const desc = items[0].weather[0].description;
+            const icon = items[0].weather[0].icon;
+            return {
+              date,
+              temp: avgTemp.toFixed(1),
+              desc,
+              icon,
+            };
+          });
 
-        const extractSummary = (items) => {
-          const avgTemp =
-            items.reduce((sum, item) => sum + item.main.temp, 0) /
-            items.length;
-          const weatherDesc = items[0].weather[0].description;
-          return {
-            temp: avgTemp.toFixed(1),
-            desc: weatherDesc,
-            icon: items[0].weather[0].icon,
-          };
-        };
-
-        setWeather({
-          today: extractSummary(grouped.today),
-          tomorrow: extractSummary(grouped.tomorrow),
-        });
+        setForecast(groupedForecast);
       } catch (err) {
         setError("Error fetching weather data.");
       }
@@ -63,26 +55,47 @@ export default function Meteo({ location }) {
     fetchWeather();
   }, [location]);
 
-  if (error) return <div className="text-red-500">{error}</div>;
-  if (!weather) return <div className="text-gray-500">Loading weather...</div>;
+  if (error) return <div className="text-danger">{error}</div>;
+  if (!forecast.length) return <div className="text-muted">Loading weather...</div>;
 
-  const WeatherCard = ({ title, data }) => (
-    <div className="bg-white rounded-2xl shadow-lg p-6 m-4 w-64 text-center">
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
+const WeatherCard = ({ title, data }) => (
+  <div
+    className="card text-center mx-1 my-1"
+    style={{ width: "120px", flex: "0 0 auto", fontSize: "0.75rem" }}
+  >
+    <div className="card-body p-2">
+      <h6 className="card-title mb-1" style={{ fontSize: "0.8rem" }}>
+        {title}
+      </h6>
       <img
         src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
         alt="weather icon"
-        className="mx-auto"
+        className="mb-1"
+        style={{ width: "28px", height: "28px" }}
       />
-      <p className="text-2xl">{data.temp}°C</p>
-      <p className="text-gray-600 capitalize">{data.desc}</p>
+      <p className="mb-1 fw-semibold" style={{ fontSize: "0.9rem" }}>
+        {data.temp}°C
+      </p>
+      <p className="mb-0 text-muted" style={{ fontSize: "0.7rem" }}>
+        {data.desc}
+      </p>
     </div>
-  );
+  </div>
+);
+
 
   return (
-    <div className="flex flex-col sm:flex-row justify-center items-center">
-      <WeatherCard title="Today" data={weather.today} />
-      <WeatherCard title="Tomorrow" data={weather.tomorrow} />
+    <div className="d-flex overflow-auto px-3 py-2">
+      {forecast.map((day) => (
+        <WeatherCard
+          key={day.date}
+          title={new Date(day.date).toLocaleDateString(undefined, {
+            weekday: "short",
+            day: "numeric",
+          })}
+          data={day}
+        />
+      ))}
     </div>
   );
 }

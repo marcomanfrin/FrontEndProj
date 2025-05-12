@@ -2,6 +2,7 @@ import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootst
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './ComponentLayout.css';
+import Meteo from '../components/Meteo'; // Assuming you have a Meteo component
 
 const ProductDetail = () => {
     const [product, setProduct] = useState(null);
@@ -76,14 +77,7 @@ const ProductDetail = () => {
                     <img src={image} alt={title} className="img-fluid" />
                     <p> </p>
                     <Card className="mb-3 bivacco-meteo">
-                      <Card.Body>
-                          <Card.Title>Meteo</Card.Title>
-                            <Row>
-                              <Col>D1</Col>
-                              <Col>D2</Col>
-                              <Col>D3</Col>
-                            </Row>
-                      </Card.Body>
+                      <Meteo location={place} />
                     </Card>
                 </Col>
                 <Col md={6}>
