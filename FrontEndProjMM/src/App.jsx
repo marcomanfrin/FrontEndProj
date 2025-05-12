@@ -7,7 +7,7 @@ import Login from "./pages/Login"
 import Admin from "./pages/Admin"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
-import ProductDetail from "./pages/ProductDetail"
+import DetailPage from "./pages/DetailPage"
 import Profile from "./pages/Profile"
 import Layout from "./layout/Layout"
 import Test from "./pages/test"
@@ -18,7 +18,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path= "/" element={<Home />} />
         <Route path="/Bivacchi" element={<Bivacchi />} />
-        <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/products/:productId" element={<DetailPage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />

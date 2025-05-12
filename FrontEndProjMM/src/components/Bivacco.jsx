@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import './ComponentLayout.css';
 import { Alert, Container, Row, Col } from "react-bootstrap";
 
-function Product({ id, title, image, stock, selectedProduct, handleSelect }) {
+function Bivacco({ id, title, image, stock, selectedProduct, handleSelect }) {
 
   const isSelected = id === (selectedProduct && selectedProduct.id)
 
@@ -20,4 +20,4 @@ function Product({ id, title, image, stock, selectedProduct, handleSelect }) {
   )
 }
 
-export default Product
+export default Bivacco

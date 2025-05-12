@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import './ComponentLayout.css';
 import Meteo from '../components/Meteo'; // Assuming you have a Meteo component
 
-const ProductDetail = () => {
+const DetailPage = () => {
     const [product, setProduct] = useState(null);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
@@ -132,4 +132,4 @@ const ProductDetail = () => {
     );
 };
 
-export default ProductDetail;
+export default DetailPage;

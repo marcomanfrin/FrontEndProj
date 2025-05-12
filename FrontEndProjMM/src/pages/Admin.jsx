@@ -5,10 +5,7 @@ const Admin = () => {
     <>
       <NewBivaccoForm />
     </>
-    
-
   )
-
 }
 
 export default Admin

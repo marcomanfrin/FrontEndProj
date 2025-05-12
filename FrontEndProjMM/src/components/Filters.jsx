@@ -1,4 +1,4 @@
-const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
+const Filters = ({ fetchProducts, setSearchParams }) => {
   return (
     <div>
       <label htmlFor="limit-select">Products per page:</label>
@@ -55,4 +55,4 @@ const ProductsFilters = ({ fetchProducts, setSearchParams }) => {
   )
 }
 
-export default ProductsFilters
+export default Filters

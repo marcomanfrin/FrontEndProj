@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { PacmanLoader } from "react-spinners";
 import { Alert, Container, Row, Col } from "react-bootstrap";
-import Product from "../components/Product";
-import ProductsFilters from "../components/ProductsFilters";
+import Bivacco from "../components/Bivacco";
+import Filters from "../components/Filters";
 import { useSearchParams } from "react-router";
 import './ComponentLayout.css';
 
 const Bivacchi = () => {
-  const [isNewProduct, _] = useState(false);
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showProducts, setShowProducts] = useState(true);
@@ -44,12 +43,10 @@ const Bivacchi = () => {
 
   const handleSelect = selected => setSelectedProduct(selected);
 
-  if (isNewProduct) return <NewComponentForm />;
-
   return (
     <>
       <div className="my-4">
-        <ProductsFilters fetchProducts={fetchProducts} setSearchParams={setSearchParams} />
+        <Filters fetchProducts={fetchProducts} setSearchParams={setSearchParams} />
       </div>
 
       {loading && (
@@ -64,7 +61,7 @@ const Bivacchi = () => {
           <Row>
             {products.map(product => (
               <Col key={product.id} md={6} lg={4} className="mb-4">
-                <Product {...product} selectedProduct={selectedProduct} handleSelect={handleSelect} />
+                <Bivacco {...product} selectedProduct={selectedProduct} handleSelect={handleSelect} />
               </Col>
             ))}
           </Row>
