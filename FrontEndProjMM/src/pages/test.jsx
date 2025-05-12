@@ -1,7 +1,10 @@
+import Meteo from "../components/Meteo"
 
 
 const Test = () => {
-  return (<></>)
+  return (<>
+    <Meteo location="Rome" />
+  </>)
 }
 
 export default Test
