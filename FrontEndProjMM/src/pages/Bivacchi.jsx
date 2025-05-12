@@ -20,7 +20,7 @@ const Bivacchi = () => {
 
   const fetchProducts = async () => {
     try {
-      let url = `http://localhost:3001/bivacchi?_limit=${limit}`;
+      let url = `https://bivacchiappserver.onrender.com/api/bivacchi?_limit=${limit}`;
       if (category) url += `&category=${category}`;
       if (search) url += `&q=${encodeURIComponent(search)}`;
 

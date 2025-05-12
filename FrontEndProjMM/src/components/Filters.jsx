@@ -1,20 +1,20 @@
-const Filters = ({ fetchProducts, setSearchParams }) => {
+import { useState } from "react";
+
+const Filters = ({ setSearchParams }) => {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <div>
-      <label htmlFor="limit-select">Products per page:</label>
+      <label htmlFor="limit-select">Bivacchi per pagina:</label>
       <select 
         id="limit-select"
         onChange={event => {
-          // setSearchParams({ limit: event.target.value }) // Se passo un oggetto e basta, sto sovrascrivendo i query parameters pre-esistenti
-          // Se passo una callback function invece posso accedere ai query params
-          // attuali ed aggiungere il nuovo, facendo così una concatenazione invece che una sovrascrittura
           setSearchParams(actualParams => {
-            actualParams.set("limit", event.target.value)
-            return actualParams
-          })
+            actualParams.set("limit", event.target.value);
+            return actualParams;
+          });
         }}
       >
-
         <option value="">-</option>
         <option value="3">3</option>
         <option value="6">6</option>
@@ -22,37 +22,46 @@ const Filters = ({ fetchProducts, setSearchParams }) => {
         <option value="18">18</option>
       </select>
 
-      <label htmlFor="category-select">Category:</label>
+      <label htmlFor="category-select">Categoria:</label>
       <select
         id="category-select"
         onChange={event => {
           setSearchParams(actualParams => {
-            actualParams.set("category", event.target.value)
-            return actualParams
-          })
+            actualParams.set("category", event.target.value);
+            return actualParams;
+          });
         }}
       >
-
         <option value="">-</option>
         <option value="Bivacco">Bivacco</option>
         <option value="Rifugio">Rifugio</option>
       </select>
 
-      <label htmlFor="search-input">Search: </label>
+      <label htmlFor="search-input">Ricerca: </label>
       <input
         id="search-input"
         type="text"
-        placeholder="Search Products"
-        onChange={event => {
-          setSearchParams(actualParams => {
-            actualParams.set("search", event.target.value)
-            return actualParams
-          })
-        }}
-      ></input>
-      <button onClick={fetchProducts}>🔎 Search</button>
-    </div>
-  )
-}
+        placeholder="cerca un bivacco"
+        value={searchInput}
+        onChange={event => setSearchInput(event.target.value)}
+      />
 
-export default Filters
+      <button
+        onClick={() => {
+          setSearchParams(actualParams => {
+            if (searchInput) {
+              actualParams.set("search", searchInput);
+            } else {
+              actualParams.delete("search"); // remove param if input is empty
+            }
+            return actualParams;
+          });
+        }}
+      >
+        🔎
+      </button>
+    </div>
+  );
+};
+
+export default Filters;
