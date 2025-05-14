@@ -1,4 +1,3 @@
-import Counter from "../components/Counter"
 import { useSelector } from "react-redux"
 
 const Home = () => {
