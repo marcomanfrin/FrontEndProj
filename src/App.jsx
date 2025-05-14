@@ -11,7 +11,7 @@ import Profile from "./pages/Profile"
 import Test from "./pages/test"
 import { Provider } from "react-redux"
 import store from "./redux/store"
-import Layout from "./layout/Layout";
+import Layout from "./Layout/Layout";
 
 
 function App() {
