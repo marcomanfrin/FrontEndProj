@@ -1,6 +1,10 @@
+import Counter from "../components/Counter"
+import { useSelector } from "react-redux"
+
 const Home = () => {
   return (
     <>
+    <Counter />
       <div style={{ backgroundColor: '#2c3e50', color: 'white', padding: '20px', textAlign: 'center' }}>
         <h1 style={{ margin: 0 }}>BivacchiApp</h1>
         <p style={{ margin: '5px 0 0' }}>La tua guida ai bivacchi di montagna</p>
