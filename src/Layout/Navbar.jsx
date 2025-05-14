@@ -30,9 +30,7 @@ function Navbar() {
         <NavLink to="/login" style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}>
           Login
         </NavLink>
-        <NavLink to="/test" style={({ isActive }) => (isActive ? { ...linkStyle, ...activeStyle } : linkStyle)}>
-          Test
-        </NavLink>
+        <button>Log Out</button>
       </nav>
     </>
   )
