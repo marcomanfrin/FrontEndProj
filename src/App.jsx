@@ -8,10 +8,11 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import DetailPage from "./pages/DetailPage"
 import Profile from "./pages/Profile"
-import Layout from "./layout/Layout"
 import Test from "./pages/test"
 import { Provider } from "react-redux"
 import store from "./redux/store"
+import Layout from "./layout/Layout";
+
 
 function App() {
   return (
