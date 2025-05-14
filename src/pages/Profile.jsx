@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import UserCard from '../components/UserCard';
 import ListCard from '../components/ListCard';
+import { API_URL } from '../config';
+
 
 const Profile = () => {
   const loggedUser = useSelector((state) => state.auth.currentUser);
@@ -19,12 +21,12 @@ const Profile = () => {
 
     const fetchUserAndVisited = async () => {
       try {
-        // Simulazione: utente loggato con id = 1
-        const userRes = await fetch('http://localhost:3001/users/' + loggedUser.id);
+        const userRes = await fetch(`${API_URL}/users/` + loggedUser.id);
         if (!userRes.ok) throw new Error("Errore caricamento utente");
         const userData = await userRes.json();
 
-        const res = await fetch('http://localhost:3001/bivacchi');
+        //const res = await fetch('http://localhost:3001/bivacchi');
+        const res = await fetch(`${API_URL}/bivacchi`);
         if (!res.ok) throw new Error("Errore durante il recupero dei bivacchi");
         const allBivacchi = await res.json();
 

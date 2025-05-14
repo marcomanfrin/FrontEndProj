@@ -5,6 +5,7 @@ import Bivacco from "../components/Bivacco";
 import Filters from "../components/Filters";
 import { useSearchParams } from "react-router";
 import './ComponentLayout.css';
+import { API_URL } from '../config';
 
 const Bivacchi = () => {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ const Bivacchi = () => {
 
   const fetchProducts = async () => {
     try {
-      let url = `http://localhost:3001/bivacchi?_limit=${limit}&_page=${page}`;
+      let url = `${API_URL}/bivacchi?_limit=${limit}&_page=${page}`;
       if (category) url += `&category=${category}`;
       if (search) url += `&q=${encodeURIComponent(search)}`;
 

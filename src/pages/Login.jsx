@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../redux/auth/authActions' // ✅ importa l'action
+import { loginUser } from '../redux/auth/authActions' 
 import './ComponentLayout.css'
+import { API_URL } from '../config';
+
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false)
@@ -42,7 +44,7 @@ const Login = () => {
       if (isRegister) {
         const { firstName, lastName, email, password, role } = formData
 
-        const response = await fetch('http://localhost:3001/users', {
+        const response = await fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ firstName, lastName, email, password, role })

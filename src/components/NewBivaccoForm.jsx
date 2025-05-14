@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
+import { API_URL } from '../config';
 
 const NewBivaccoForm = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const NewBivaccoForm = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/bivacchi', {
+      const response = await fetch(`${API_URL}/bivacchi`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

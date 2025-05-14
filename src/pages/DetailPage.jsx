@@ -2,7 +2,8 @@ import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootst
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './ComponentLayout.css';
-import Meteo from '../components/Meteo'; // Assuming you have a Meteo component
+import Meteo from '../components/Meteo'; 
+import { API_URL } from '../config'; 
 
 const DetailPage = () => {
     const [product, setProduct] = useState(null);
@@ -19,7 +20,7 @@ const DetailPage = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await fetch(`http://localhost:3001/bivacchi/${productId}`);
+                const response = await fetch(`${API_URL}/bivacchi/${productId}`);
                 if (!response.ok) throw new Error('Failed to fetch product');
                 const productData = await response.json();
                 setProduct(productData);
@@ -47,7 +48,8 @@ const DetailPage = () => {
         const updatedComments = [...comments, newCommentObj];
 
         try {
-            const response = await fetch(`http://localhost:3001/bivacchi/${productId}`, {
+            //const response = await fetch(`http://localhost:3001/bivacchi/${productId}`, {
+            const response = await fetch(`https://bivacchiappserver.onrender.com/api/bivacchi/${productId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ comments: updatedComments }),

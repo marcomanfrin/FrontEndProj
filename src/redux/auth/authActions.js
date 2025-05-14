@@ -1,6 +1,5 @@
-// redux/authActions.js
+import { API_URL } from '../../config';
 
-// Action types
 export const LOGIN_REQUEST = "auth/loginRequest"
 export const LOGIN_SUCCESS = "auth/loginSuccess"
 export const LOGIN_FAILURE = "auth/loginFailure"
@@ -12,7 +11,7 @@ export const loginUser = (email, password) => {
     dispatch({ type: LOGIN_REQUEST })
 
     try {
-      const response = await fetch("http://localhost:3001/users?email=" + email)
+      const response = await fetch(`${API_URL}/users?email=` + email)
       const users = await response.json()
 
       const user = users.find(u => u.password === password)
