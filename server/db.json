@@ -5,11 +5,11 @@
       "title": "Bivacco Fanton",
       "description": "Suggestiva escursione al moderno Bivacco Fanton, situato a Forcella Marmarole, con partenza dalla Val Da Rin (Auronzo). Panorami mozzafiato sulle Dolomiti.",
       "category": "Bivacco",
-      "place": "Roma",
-      "difficulty": "Media",
-      "duration": "2 ore",
-      "length": "5 km",
-      "heightDifference": "500 m",
+      "place": "Auronzo di Cadore",
+      "difficulty": "Alta",
+      "duration": "4 ore (andata)",
+      "length": "12 km",
+      "heightDifference": "1468 m",
       "maxHeight": "2667 m",
       "image": "https://www.dolomitireview.com/wp-content/uploads/2020/09/bivacco-fanton-marmarole.jpg",
       "comments": [
@@ -24,14 +24,6 @@
         {
           "id": 3,
           "text": "Struttura moderna e posizione incantevole."
-        },
-        {
-          "id": 4,
-          "text": "test aggiunta commento"
-        },
-        {
-          "id": 5,
-          "text": "bla bla"
         }
       ]
     },
@@ -40,7 +32,7 @@
       "title": "Rifugio Locatelli",
       "description": "Escursione panoramica verso il celebre Rifugio Locatelli ai piedi delle Tre Cime di Lavaredo. Facile e adatta a tutti, con scorci memorabili.",
       "category": "Rifugio",
-      "place": "Roma",
+      "place": "Bolzano",
       "difficulty": "Facile",
       "duration": "2 ore",
       "length": "5 km",
@@ -67,7 +59,7 @@
       "title": "Bivacco Argentino Vanin",
       "description": "Trekking tranquillo fino al Bivacco Argentino Vanin, incastonato tra le Dolomiti. Ideale per chi cerca pace e natura incontaminata.",
       "category": "Bivacco",
-      "place": "Dolomiti",
+      "place": "Trento",
       "difficulty": "Facile",
       "duration": "2 ore",
       "length": "5 km",
@@ -95,7 +87,7 @@
     },
     {
       "id": "4",
-      "title": "Bivacco Paolo e Nicola",
+      "title": "Trento",
       "description": "Escursione dolomitica che porta a un piccolo gioiello d'alta quota: il Bivacco Paolo e Nicola. Ottimo punto d’appoggio per alpinisti e amanti della montagna.",
       "category": "Bivacco",
       "place": "Dolomiti",
@@ -125,7 +117,7 @@
       "title": "Bivacco Bedin",
       "description": "Percorso accessibile che porta al Bivacco Bedin, nel cuore delle Dolomiti Bellunesi. Perfetto per un'uscita giornaliera o una notte in quota.",
       "category": "Bivacco",
-      "place": "Dolomiti",
+      "place": "Belluno",
       "difficulty": "Facile",
       "duration": "2 ore",
       "length": "5 km",
@@ -149,7 +141,7 @@
     },
     {
       "id": "6",
-      "title": "Bivacco Solvay",
+      "title": "Zermatt",
       "description": "Situato sul versante del Cervino, il Bivacco Solvay è uno dei più iconici. Raggiungibile solo da esperti alpinisti, offre una vista impareggiabile.",
       "category": "Bivacco",
       "place": "Monte Cervino",

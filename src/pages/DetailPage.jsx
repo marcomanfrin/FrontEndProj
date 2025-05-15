@@ -94,7 +94,6 @@ const DetailPage = () => {
                                 <li>Category: {category || 'Unknown'}</li>
                                 <li>Difficulty: {difficulty || 'Unknown'}</li>
                                 <li>Place: {place || 'Unknown'}</li>
-                                <li>Difficulty: {difficulty || 'Unknown'}</li>
                                 <li>Length: {length || 'Unknown'}</li>
                                 <li>HeightDifference: {heightDifference || 'Unknown'}</li>
                                 <li>MaxHeight: {maxHeight || 'Unknown'}</li>

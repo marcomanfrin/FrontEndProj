@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router"
 import "./App.css"
+import Layout from "./layout/Layout";
 import "bootstrap/dist/css/bootstrap.min.css"
 import Bivacchi from "./pages/Bivacchi"
 import Login from "./pages/Login"
@@ -11,7 +12,6 @@ import Profile from "./pages/Profile"
 import Test from "./pages/test"
 import { Provider } from "react-redux"
 import store from "./redux/store"
-import Layout from "./Layout/Layout";
 
 
 function App() {
