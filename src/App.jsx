@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router"
 import "./App.css"
-import Layout from "./layout/Layout";
+import Layout from "./Layout/Layout";
 import "bootstrap/dist/css/bootstrap.min.css"
 import Bivacchi from "./pages/Bivacchi"
 import Login from "./pages/Login"
