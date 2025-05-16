@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
         },
       };
 
-      case UPDATE_SAVED:
+    case UPDATE_SAVED:
       return {
         ...state,
         currentUser: {
