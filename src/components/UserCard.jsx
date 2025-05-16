@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import '../../style/ComponentLayout.css'
+import '../style/ComponentLayout.css'
 
 const UserCard = ({ user }) => {
   return (
