@@ -1,8 +1,10 @@
 import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import './ComponentLayout.css';
+import { useParams } from 'react-router';
+
 import Meteo from '../components/Meteo'; 
+import './ComponentLayout.css';
+
 import { API_URL } from '../config'; 
 
 const DetailPage = () => {
@@ -13,18 +15,17 @@ const DetailPage = () => {
     const [error, setError] = useState(null);
 
     const { productId } = useParams();
-    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchProductDetail = async () => {
+        const fetchBivaccoDetail = async () => {
             try {
                 setLoading(true);
                 setError(null);
                 const response = await fetch(`${API_URL}/bivacchi/${productId}`);
-                if (!response.ok) throw new Error('Failed to fetch product');
-                const productData = await response.json();
-                setProduct(productData);
-                setComments(productData.comments || []);
+                if (!response.ok) throw new Error('Failed to fetch bivacco details');
+                const bivaccoData = await response.json();
+                setProduct(bivaccoData);
+                setComments(bivaccoData.comments || []);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -32,7 +33,7 @@ const DetailPage = () => {
             }
         };
 
-        fetchProductDetail();
+        fetchBivaccoDetail();
     }, [productId]);
 
     const handleCommentSubmit = async (e) => {
@@ -64,9 +65,9 @@ const DetailPage = () => {
         }
     };
 
-    if (loading) return <div>Loading product...</div>;
+    if (loading) return <div>Loading bivacchi...</div>;
     if (error) return <div><h2>{error}</h2></div>;
-    if (!product) return <div>No product found</div>;
+    if (!product) return <div>No bivacchi found</div>;
 
     const { title, image, description, place, difficulty, duration, length,  heightDifference, maxHeight, category} = product;
 

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+
 import UserCard from '../components/UserCard';
 import ListCard from '../components/ListCard';
+
 import { API_URL } from '../config';
 
 
 const Profile = () => {
   const loggedUser = useSelector((state) => state.auth.currentUser);
-
   const [visitedBivacchi, setVisitedBivacchi] = useState([]);
   const navigate = useNavigate();
 
@@ -23,9 +24,8 @@ const Profile = () => {
       try {
         const userRes = await fetch(`${API_URL}/users/` + loggedUser.id);
         if (!userRes.ok) throw new Error("Errore caricamento utente");
-        const userData = await userRes.json();
+        //const userData = await userRes.json();
 
-        //const res = await fetch('http://localhost:3001/bivacchi');
         const res = await fetch(`${API_URL}/bivacchi`);
         if (!res.ok) throw new Error("Errore durante il recupero dei bivacchi");
         const allBivacchi = await res.json();

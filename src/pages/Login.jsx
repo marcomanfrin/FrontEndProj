@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
+import { useState } from 'react'
+import { Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../redux/auth/authActions' 
-import './ComponentLayout.css'
-import { API_URL } from '../config';
 
+import './ComponentLayout.css'
+
+import { API_URL } from '../config';
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false)
@@ -18,8 +19,7 @@ const Login = () => {
   })
 
   const dispatch = useDispatch()
-  const { currentUser, loading, error } = useSelector(state => state.auth) // ✅ leggi dallo store
-
+  const { currentUser, loading, error } = useSelector(state => state.auth)
   const [message, setMessage] = useState(null)
 
   const toggleMode = () => {
@@ -53,7 +53,7 @@ const Login = () => {
         if (!response.ok) throw new Error('Registration failed.')
         setMessage('Registered successfully!')
       } else {
-        dispatch(loginUser(formData.email, formData.password)) // ✅ usa il thunk per il login
+        dispatch(loginUser(formData.email, formData.password)) // thunk per il login
       }
     } catch (err) {
       console.error(err)
