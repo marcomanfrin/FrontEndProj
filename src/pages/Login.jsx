@@ -15,7 +15,9 @@ const Login = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'base'
+    role: 'base',
+    visited: [-1],
+    saved: [-1]
   })
 
   const dispatch = useDispatch()
@@ -42,12 +44,12 @@ const Login = () => {
 
     try {
       if (isRegister) {
-        const { firstName, lastName, email, password, role } = formData
+        const { firstName, lastName, email, password, role, visited, saved } = formData
 
         const response = await fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName, lastName, email, password, role })
+          body: JSON.stringify({ firstName, lastName, email, password, role, visited, saved })
         })
 
         if (!response.ok) throw new Error('Registration failed.')

@@ -12,6 +12,7 @@ import { API_URL } from '../config';
 const Profile = () => {
   const user = useSelector((state) => state.auth.currentUser);
   const [visitedBivacchi, setVisitedBivacchi] = useState([]);
+  const [savedBivacchi, setSavedBivacchi] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,23 +21,28 @@ const Profile = () => {
       return;
     }
 
-    const fetchUserAndVisited = async () => {
+    const fetch = async () => {
       try {
         const res = await fetch(`${API_URL}/bivacchi`);
         if (!res.ok) throw new Error("Errore durante il recupero dei bivacchi");
         const allBivacchi = await res.json();
 
         const visited = allBivacchi.filter(bivacco =>
-          user.visited.includes(bivacco.id)
+          user.visited?.includes(bivacco.id)
+        );
+
+        const saved = allBivacchi.filter(bivacco =>
+          user.saved?.includes(bivacco.id)
         );
 
         setVisitedBivacchi(visited);
+        setSavedBivacchi(saved);
       } catch (error) {
         console.error("Errore:", error);
       }
     };
 
-    fetchUserAndVisited();
+    fetch();
   }, [user, navigate]);
 
   return (
@@ -49,9 +55,9 @@ const Profile = () => {
 
         {/* Colonna 2: Bivacchi da visitare */}
         <Col md={4}>
-          <h4 className="mb-3">Da visitare ({visitedBivacchi.length})</h4>
-          {visitedBivacchi.length > 0 ? (
-            visitedBivacchi.map((bivacco) => (
+          <h4 className="mb-3">Da visitare ({savedBivacchi.length})</h4>
+          {savedBivacchi.length > 0 ? (
+            savedBivacchi.map((bivacco) => (
               <ListCard key={bivacco.id} title={bivacco.title} data={bivacco.place} />
             ))
           ) : (

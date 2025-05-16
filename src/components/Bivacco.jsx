@@ -2,6 +2,7 @@ import { Link } from "react-router"
 import { Container, Button} from "react-bootstrap";
 
 import VisitatoButton from "./visitedBtn";
+import SavedButton from "./saveBtn";
 import '../../style/ComponentLayout.css'
 
 function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
@@ -14,6 +15,7 @@ function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
         <img src={image} alt={title} className="img-fluid bivacco-image" />
         <h2>{title}</h2>
         <VisitatoButton bivaccoId={id} />
+        <SavedButton bivaccoId={id} />
         <Button as={Link} to={`/Bivacchi/${id}`}>Dettagli bivacco</Button>
       </Container>
     </div>

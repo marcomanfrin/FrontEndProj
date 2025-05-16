@@ -1,4 +1,4 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, UPDATE_VISITED } from "./authActions"
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, UPDATE_VISITED, UPDATE_SAVED } from "./authActions"
 
 const savedUser = localStorage.getItem('user')
 
@@ -16,6 +16,15 @@ const authReducer = (state = initialState, action) => {
         currentUser: {
           ...state.currentUser,
           visited: action.payload,
+        },
+      };
+
+      case UPDATE_SAVED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          saved: action.payload,
         },
       };
 
