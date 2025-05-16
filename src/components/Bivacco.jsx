@@ -1,20 +1,22 @@
 import { Link } from "react-router"
-import './ComponentLayout.css';
-import { Alert, Container, Row, Col } from "react-bootstrap";
+import { Container, Button} from "react-bootstrap";
 
-function Bivacco({ id, title, image, stock, selectedProduct, handleSelect }) {
+import VisitatoButton from "./visitedBtn";
+import SavedButton from "./saveBtn";
+import '../style/ComponentLayout.css'
 
-  const isSelected = id === (selectedProduct && selectedProduct.id)
+function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
+
+  const isSelected = id === (selectedBivacco && selectedBivacco.id)
 
   return (
-    <div className={`product ${stock === 0 ? "out-of-stock" : ""} ${isSelected ? "selected" : ""}`} onClick={() => handleSelect({ id })}>
+    <div className={`bivacco ${isSelected ? "selected" : ""}`} onClick={() => handleSelect({ id })}>
       <Container className="component-container mt-4">
-        <img src={image} alt={title} className="" />
+        <img src={image} alt={title} className="img-fluid bivacco-image" />
         <h2>{title}</h2>
-        <button>Visitato</button>
-        <button>
-          <Link to={`/products/${id}`}>Dettagli bivacco</Link>
-        </button>
+        <VisitatoButton bivaccoId={id} />
+        <SavedButton bivaccoId={id} />
+        <Button as={Link} to={`/Bivacchi/${id}`}>Dettagli bivacco</Button>
       </Container>
     </div>
   )

@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
+import { useState } from 'react'
+import { Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../redux/auth/authActions' 
-import './ComponentLayout.css'
-import { API_URL } from '../config';
 
+import '../style/ComponentLayout.css'
+
+import { API_URL } from '../config';
 
 const Login = () => {
   const [isRegister, setIsRegister] = useState(false)
@@ -14,12 +15,13 @@ const Login = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'base'
+    role: 'base',
+    visited: [-1],
+    saved: [-1]
   })
 
   const dispatch = useDispatch()
-  const { currentUser, loading, error } = useSelector(state => state.auth) // ✅ leggi dallo store
-
+  const { currentUser, loading, error } = useSelector(state => state.auth)
   const [message, setMessage] = useState(null)
 
   const toggleMode = () => {
@@ -42,18 +44,18 @@ const Login = () => {
 
     try {
       if (isRegister) {
-        const { firstName, lastName, email, password, role } = formData
+        const { firstName, lastName, email, password, role, visited, saved } = formData
 
         const response = await fetch(`${API_URL}/users`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName, lastName, email, password, role })
+          body: JSON.stringify({ firstName, lastName, email, password, role, visited, saved })
         })
 
         if (!response.ok) throw new Error('Registration failed.')
         setMessage('Registered successfully!')
       } else {
-        dispatch(loginUser(formData.email, formData.password)) // ✅ usa il thunk per il login
+        dispatch(loginUser(formData.email, formData.password)) // thunk per il login
       }
     } catch (err) {
       console.error(err)

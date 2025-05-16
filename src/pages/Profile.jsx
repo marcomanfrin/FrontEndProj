@@ -1,67 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+
 import UserCard from '../components/UserCard';
 import ListCard from '../components/ListCard';
+
 import { API_URL } from '../config';
 
-
 const Profile = () => {
-  const loggedUser = useSelector((state) => state.auth.currentUser);
-
+  const user = useSelector((state) => state.auth.currentUser);
   const [visitedBivacchi, setVisitedBivacchi] = useState([]);
+  const [savedBivacchi, setSavedBivacchi] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loggedUser) {
+    if (!user) {
       navigate('/login');
       return;
     }
 
-    const fetchUserAndVisited = async () => {
+    const fetchUserData = async () => {
       try {
-        const userRes = await fetch(`${API_URL}/users/` + loggedUser.id);
-        if (!userRes.ok) throw new Error("Errore caricamento utente");
-        const userData = await userRes.json();
-
-        //const res = await fetch('http://localhost:3001/bivacchi');
         const res = await fetch(`${API_URL}/bivacchi`);
         if (!res.ok) throw new Error("Errore durante il recupero dei bivacchi");
         const allBivacchi = await res.json();
 
         const visited = allBivacchi.filter(bivacco =>
-          loggedUser.visited.includes(Number(bivacco.id))
+          user.visited.includes(bivacco.id)
+        );
+
+        const saved = allBivacchi.filter(bivacco =>
+          user.saved.includes(bivacco.id)
         );
 
         setVisitedBivacchi(visited);
+        setSavedBivacchi(saved);
       } catch (error) {
         console.error("Errore:", error);
       }
     };
 
-    fetchUserAndVisited();
-  }, [loggedUser, navigate]);
+    fetchUserData();
+  }, [user, navigate]);
 
   return (
-    <Container className="mt-5">
+    <Container fluid className="mt-5">
       <Row>
-        <Col md={5}>
-          {loggedUser && <UserCard user={loggedUser} />}
+
+        {/* Colonna 1: Utente */}
+        <Col md={4}>
+          {user && <UserCard user={user} />}
         </Col>
-        <Col md={7}>
-          <h3 className="mb-3">Bivacchi visitati ({visitedBivacchi.length})</h3>
-          <Row>
-            {visitedBivacchi.length > 0 ? (
-              visitedBivacchi.map((bivacco) => (
-                <Col sm={12} key={bivacco.id} className="mb-3">
-                  <ListCard title={bivacco.title} />
-                </Col>
-              ))
-            ) : (
-              <p>Nessun bivacco visitato ancora.</p>
-            )}
-          </Row>
+
+        {/* Colonna 2: Bivacchi salvati */}
+        <Col md={4}>
+          <h4 className="mb-3">Salvati ({savedBivacchi.length})</h4>
+          {savedBivacchi.length > 0 ? (
+            savedBivacchi.map((bivacco) => (
+              <ListCard key={bivacco.id} title={bivacco.title} data={bivacco.place} />
+            ))
+          ) : (
+            <p>Nessun bivacco salvato.</p>
+          )}
+        </Col>
+
+        
+
+        {/* Colonna 3: Bivacchi visitati */}
+        <Col md={4}>
+          <h4 className="mb-3">Visitati ({visitedBivacchi.length})</h4>
+          {visitedBivacchi.length > 0 ? (
+            visitedBivacchi.map((bivacco) => (
+              <ListCard key={bivacco.id} title={bivacco.title} data={bivacco.place} />
+            ))
+          ) : (
+            <p>Nessun bivacco ancora visitato.</p>
+          )}
         </Col>
       </Row>
     </Container>

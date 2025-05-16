@@ -1,55 +1,71 @@
 import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
-import './ComponentLayout.css';
+import { useParams } from 'react-router';
+
+// DetailPage component displays detailed information about a specific bivacco, including its details, weather, and comments.
 import Meteo from '../components/Meteo'; 
+import '../style/ComponentLayout.css'
+
 import { API_URL } from '../config'; 
+import VisitatoButton from '../components/visitedBtn';
 
 const DetailPage = () => {
+    // State to hold the bivacco product details
     const [product, setProduct] = useState(null);
+    // State to hold the list of comments for the bivacco
     const [comments, setComments] = useState([]);
+    // State to hold the new comment input by the user
     const [newComment, setNewComment] = useState('');
+    // State to indicate if the data is currently loading
     const [loading, setLoading] = useState(true);
+    // State to hold any error message from fetching data
     const [error, setError] = useState(null);
 
-    const { productId } = useParams();
-    const navigate = useNavigate();
+    const { bivaccoId } = useParams();
 
+    // Fetch bivacco details when the component mounts or when bivaccoId changes
     useEffect(() => {
-        const fetchProductDetail = async () => {
+        const fetchBivaccoDetail = async () => {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await fetch(`${API_URL}/bivacchi/${productId}`);
-                if (!response.ok) throw new Error('Failed to fetch product');
-                const productData = await response.json();
-                setProduct(productData);
-                setComments(productData.comments || []);
+                // Make API call to fetch bivacco details by ID
+                const response = await fetch(`${API_URL}/bivacchi/${bivaccoId}`);
+                if (!response.ok) throw new Error('Failed to fetch bivacco details');
+                const bivaccoData = await response.json();
+                // Update state with fetched bivacco data and comments
+                setProduct(bivaccoData);
+                setComments(bivaccoData.comments || []);
             } catch (error) {
+                // Set error message if API call fails
                 setError(error.message);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchProductDetail();
-    }, [productId]);
+        fetchBivaccoDetail();
+    }, [bivaccoId]);
 
+    // Handles submission of a new comment for the bivacco
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
+        // Trim the comment input and ignore if empty
         const trimmedComment = newComment.trim();
         if (trimmedComment === '') return;
 
+        // Create new comment object with unique ID
         const newCommentObj = {
             id: comments.length > 0 ? comments[comments.length - 1].id + 1 : 1,
             text: trimmedComment,
         };
 
+        // Prepare updated comments array including the new comment
         const updatedComments = [...comments, newCommentObj];
 
         try {
-            //const response = await fetch(`http://localhost:3001/bivacchi/${productId}`, {
-            const response = await fetch(`https://bivacchiappserver.onrender.com/api/bivacchi/${productId}`, {
+            // Send PATCH request to update comments on the server
+            const response = await fetch(`${API_URL}/bivacchi/${bivaccoId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ comments: updatedComments }),
@@ -57,6 +73,7 @@ const DetailPage = () => {
 
             if (!response.ok) throw new Error('Failed to update comments');
 
+            // Update local comments state and clear input field
             setComments(updatedComments);
             setNewComment('');
         } catch (error) {
@@ -64,17 +81,19 @@ const DetailPage = () => {
         }
     };
 
-    if (loading) return <div>Loading product...</div>;
+    if (loading) return <div>Loading bivacchi...</div>;
     if (error) return <div><h2>{error}</h2></div>;
-    if (!product) return <div>No product found</div>;
+    if (!product) return <div>No bivacchi found</div>;
 
     const { title, image, description, place, difficulty, duration, length,  heightDifference, maxHeight, category} = product;
 
     return (
         <Container className="bivacco-container mt-4">
+            {/* Title and Visitato Button */}
             <h1 className="bivacco-title mb-4">{title}</h1>
-            <button>Visitato</button>
+            <VisitatoButton bivaccoId={bivaccoId} />
             <Row>
+                {/* Image and Meteo Section */}
                 <Col md={6} className="bivacco-image-container">
                     <img src={image} alt={title} className="img-fluid" />
                     <p> </p>
@@ -82,6 +101,7 @@ const DetailPage = () => {
                       <Meteo location={place} />
                     </Card>
                 </Col>
+                {/* Details Section */}
                 <Col md={6}>
                     <Card className="mb-3 bivacco-description">
                         <Card.Body>
@@ -104,6 +124,7 @@ const DetailPage = () => {
                 </Col>
             </Row>
             
+            {/* Comments Section */}
             <Card className="mt-4 bivacco-comments">
                 <Card.Body>
                     <Card.Title>Comments</Card.Title>
