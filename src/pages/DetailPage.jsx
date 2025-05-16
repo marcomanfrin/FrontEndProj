@@ -48,8 +48,8 @@ const DetailPage = () => {
         const updatedComments = [...comments, newCommentObj];
 
         try {
-            //const response = await fetch(`http://localhost:3001/bivacchi/${productId}`, {
-            const response = await fetch(`https://bivacchiappserver.onrender.com/api/bivacchi/${productId}`, {
+            
+            const response = await fetch(`${API_URL}/bivacchi${productId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ comments: updatedComments }),
