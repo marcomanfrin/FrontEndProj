@@ -14,14 +14,14 @@ const DetailPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { productId } = useParams();
+    const { bivaccoId } = useParams();
 
     useEffect(() => {
         const fetchBivaccoDetail = async () => {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await fetch(`${API_URL}/bivacchi/${productId}`);
+                const response = await fetch(`${API_URL}/bivacchi/${bivaccoId}`);
                 if (!response.ok) throw new Error('Failed to fetch bivacco details');
                 const bivaccoData = await response.json();
                 setProduct(bivaccoData);
@@ -34,7 +34,7 @@ const DetailPage = () => {
         };
 
         fetchBivaccoDetail();
-    }, [productId]);
+    }, [bivaccoId]);
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
@@ -50,7 +50,7 @@ const DetailPage = () => {
 
         try {
             
-            const response = await fetch(`${API_URL}/bivacchi${productId}`, {
+            const response = await fetch(`${API_URL}/bivacchi/${bivaccoId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ comments: updatedComments }),
