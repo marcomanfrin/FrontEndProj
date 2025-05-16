@@ -10,7 +10,7 @@ const SaveButton = ({ bivaccoId, onStatusChange }) => {
 
   // Disable button if not logged in
   if (!user) {
-    return <button disabled className="btn btn-outline-secondary">Visitato</button>;
+    return <button disabled className="btn btn-outline-secondary">to-do</button>;
   }
 
   const isSaved = user.saved.includes(bivaccoId);

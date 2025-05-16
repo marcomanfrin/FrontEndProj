@@ -2,12 +2,13 @@ import { Container, Row, Col, Card, ListGroup, Form, Button } from 'react-bootst
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-// DetailPage component displays detailed information about a specific bivacco, including its details, weather, and comments.
 import Meteo from '../components/Meteo'; 
+import VisitatoButton from '../components/visitedBtn';
+import SaveButton from '../components/saveBtn';
+import { API_URL } from '../config'; 
 import '../style/ComponentLayout.css'
 
-import { API_URL } from '../config'; 
-import VisitatoButton from '../components/visitedBtn';
+// DetailPage component displays detailed information about a specific bivacco, including its details, weather, and comments.
 
 const DetailPage = () => {
     // State to hold the bivacco product details
@@ -92,6 +93,7 @@ const DetailPage = () => {
             {/* Title and Visitato Button */}
             <h1 className="bivacco-title mb-4">{title}</h1>
             <VisitatoButton bivaccoId={bivaccoId} />
+            <SaveButton bivaccoId={bivaccoId} />
             <Row>
                 {/* Image and Meteo Section */}
                 <Col md={6} className="bivacco-image-container">
