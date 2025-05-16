@@ -55,7 +55,7 @@ const Profile = () => {
             {visitedBivacchi.length > 0 ? (
               visitedBivacchi.map((bivacco) => (
                 <Col sm={12} key={bivacco.id} className="mb-3">
-                  <ListCard title={bivacco.title} />
+                  <ListCard title={bivacco.title} data={bivacco.place}/>
                 </Col>
               ))
             ) : (
