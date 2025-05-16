@@ -99,7 +99,7 @@ const DetailPage = () => {
                 <Col md={6} className="bivacco-image-container">
                     <img src={image} alt={title} className="img-fluid" />
                     <p> </p>
-                    <Card className="mb-3 bivacco-meteo">
+                    <Card className="mb-3 weather-container bivacco-meteo">
                       <Meteo location={place} />
                     </Card>
                 </Col>
