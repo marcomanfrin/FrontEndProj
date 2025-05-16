@@ -9,7 +9,7 @@ function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
   return (
     <div className={`bivacco ${isSelected ? "selected" : ""}`} onClick={() => handleSelect({ id })}>
       <Container className="component-container mt-4">
-        <img src={image} alt={title} className="" />
+        <img src={image} alt={title} className="img-fluid bivacco-image" />
         <h2>{title}</h2>
         <button>Visitato</button>
         <Button as={Link} to={`/Bivacchi/${id}`}>Dettagli bivacco</Button>
