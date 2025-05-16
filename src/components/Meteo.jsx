@@ -48,6 +48,7 @@ export default function Meteo({ location }) {
         setForecast(groupedForecast);
       } catch (err) {
         setError("Error fetching weather data.");
+        console.error(err);
       }
     };
 
@@ -58,7 +59,7 @@ export default function Meteo({ location }) {
   if (!forecast.length) return <div className="text-muted">Loading weather...</div>;
 
   return (
-    <div className="d-flex overflow-auto px-3 py-2 weather-container">
+    <div className="weather-container">
       {forecast.map((day) => (
         <WeatherCard
           key={day.date}
@@ -75,8 +76,8 @@ export default function Meteo({ location }) {
 
 function WeatherCard({ title, data }) {
   return (
-    <div className="card text-center mx-1 my-1 weather-card">
-      <div className="card-body p-2">
+    <div className="card text-center weather-card">
+      <div className="card-body p-1">
         <h6 className="card-title mb-1">{title}</h6>
         <img
           src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
