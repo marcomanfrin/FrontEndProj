@@ -29,3 +29,46 @@
   border-radius: 50%;
   margin-bottom: 1rem;
 }
+
+.weather-container {
+  gap: 8px;
+}
+
+.weather-card {
+  width: 120px;
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+}
+
+.weather-card .card-title {
+  font-size: 0.8rem;
+}
+
+.weather-card .weather-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.weather-card p {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .weather-card {
+    width: 90px;
+    font-size: 0.65rem;
+  }
+
+  .weather-card .card-title {
+    font-size: 0.7rem;
+  }
+
+  .weather-card .weather-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .weather-card p {
+    font-size: 0.65rem;
+  }
+}

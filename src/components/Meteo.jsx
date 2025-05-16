@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './ComponentLayout.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./ComponentLayout.css";
 
 const API_KEY = "c3540be547721be3d08cf1f24a83a1e1";
 
@@ -23,7 +23,6 @@ export default function Meteo({ location }) {
           return;
         }
 
-        // Group data by day
         const dailyGroups = {};
         data.list.forEach((item) => {
           const dateKey = item.dt_txt.split(" ")[0];
@@ -58,33 +57,8 @@ export default function Meteo({ location }) {
   if (error) return <div className="text-danger">{error}</div>;
   if (!forecast.length) return <div className="text-muted">Loading weather...</div>;
 
-const WeatherCard = ({ title, data }) => (
-  <div
-    className="card text-center mx-1 my-1"
-    style={{ width: "120px", flex: "0 0 auto", fontSize: "0.75rem" }}
-  >
-    <div className="card-body p-2">
-      <h6 className="card-title mb-1" style={{ fontSize: "0.8rem" }}>
-        {title}
-      </h6>
-      <img
-        src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
-        alt="weather icon"
-        className="mb-1"
-        style={{ width: "28px", height: "28px" }}
-      />
-      <p className="mb-1 fw-semibold" style={{ fontSize: "0.9rem" }}>
-        {data.temp}°C
-      </p>
-      <p className="mb-0 text-muted" style={{ fontSize: "0.7rem" }}>
-        {data.desc}
-      </p>
-    </div>
-  </div>
-);
-
   return (
-    <div className="d-flex overflow-auto px-3 py-2">
+    <div className="d-flex overflow-auto px-3 py-2 weather-container">
       {forecast.map((day) => (
         <WeatherCard
           key={day.date}
@@ -95,6 +69,23 @@ const WeatherCard = ({ title, data }) => (
           data={day}
         />
       ))}
+    </div>
+  );
+}
+
+function WeatherCard({ title, data }) {
+  return (
+    <div className="card text-center mx-1 my-1 weather-card">
+      <div className="card-body p-2">
+        <h6 className="card-title mb-1">{title}</h6>
+        <img
+          src={`https://openweathermap.org/img/wn/${data.icon}@2x.png`}
+          alt="weather icon"
+          className="mb-1 weather-icon"
+        />
+        <p className="mb-1 fw-semibold">{data.temp}°C</p>
+        <p className="mb-0 text-muted">{data.desc}</p>
+      </div>
     </div>
   );
 }
