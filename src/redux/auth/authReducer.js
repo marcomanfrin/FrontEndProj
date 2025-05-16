@@ -1,7 +1,9 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, UPDATE_VISITED } from "./authActions"
 
+const savedUser = localStorage.getItem('user')
+
 const initialState = {
-  currentUser: null,
+  currentUser: savedUser ? JSON.parse(savedUser) : null,
   loading: false,
   error: null,
 }

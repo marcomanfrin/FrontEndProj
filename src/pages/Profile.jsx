@@ -40,24 +40,35 @@ const Profile = () => {
   }, [user, navigate]);
 
   return (
-    <Container className="mt-5">
+    <Container fluid className="mt-5">
       <Row>
-        <Col md={5}>
+        {/* Colonna 1: Utente */}
+        <Col md={4}>
           {user && <UserCard user={user} />}
         </Col>
-        <Col md={7}>
-          <h3 className="mb-3">Bivacchi visitati ({visitedBivacchi.length})</h3>
-          <Row>
-            {visitedBivacchi.length > 0 ? (
-              visitedBivacchi.map((bivacco) => (
-                <Col sm={12} key={bivacco.id} className="mb-3">
-                  <ListCard title={bivacco.title} data={bivacco.place}/>
-                </Col>
-              ))
-            ) : (
-              <p>Nessun bivacco visitato ancora.</p>
-            )}
-          </Row>
+
+        {/* Colonna 2: Bivacchi da visitare */}
+        <Col md={4}>
+          <h4 className="mb-3">Da visitare ({visitedBivacchi.length})</h4>
+          {visitedBivacchi.length > 0 ? (
+            visitedBivacchi.map((bivacco) => (
+              <ListCard key={bivacco.id} title={bivacco.title} data={bivacco.place} />
+            ))
+          ) : (
+            <p>Nessun bivacco da visitare.</p>
+          )}
+        </Col>
+
+        {/* Colonna 3: Bivacchi visitati */}
+        <Col md={4}>
+          <h4 className="mb-3">Visitati ({visitedBivacchi.length})</h4>
+          {visitedBivacchi.length > 0 ? (
+            visitedBivacchi.map((bivacco) => (
+              <ListCard key={bivacco.id} title={bivacco.title} data={bivacco.place} />
+            ))
+          ) : (
+            <p>Nessun bivacco ancora visitato.</p>
+          )}
         </Col>
       </Row>
     </Container>

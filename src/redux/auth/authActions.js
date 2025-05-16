@@ -17,6 +17,7 @@ export const loginUser = (email, password) => {
       const user = users.find(u => u.password === password)
 
       if (user) {
+        localStorage.setItem('user', JSON.stringify(user))
         dispatch({ type: LOGIN_SUCCESS, payload: user })
       } else {
         dispatch({ type: LOGIN_FAILURE, error: "Invalid credentials" })
@@ -29,9 +30,10 @@ export const loginUser = (email, password) => {
 }
 
 // Action creator per il logout
-export const logoutUser = () => ({
-  type: LOGOUT,
-})
+export const logoutUser = () => {
+  localStorage.removeItem('user') // <--- pulisci qui
+  return { type: LOGOUT }
+}
 
 export const UPDATE_VISITED = "auth/updateVisited";
 
