@@ -6,6 +6,7 @@ import Meteo from '../components/Meteo';
 import '../../style/ComponentLayout.css'
 
 import { API_URL } from '../config'; 
+import VisitatoButton from '../components/visitedBtn';
 
 const DetailPage = () => {
     const [product, setProduct] = useState(null);
@@ -74,7 +75,7 @@ const DetailPage = () => {
     return (
         <Container className="bivacco-container mt-4">
             <h1 className="bivacco-title mb-4">{title}</h1>
-            <button>Visitato</button>
+            <VisitatoButton bivaccoId={bivaccoId} />
             <Row>
                 <Col md={6} className="bivacco-image-container">
                     <img src={image} alt={title} className="img-fluid" />

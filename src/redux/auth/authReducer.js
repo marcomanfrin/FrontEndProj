@@ -1,6 +1,4 @@
-// redux/authReducer.js
-
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from "./authActions"
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, UPDATE_VISITED } from "./authActions"
 
 const initialState = {
   currentUser: null,
@@ -10,6 +8,15 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_VISITED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          visited: action.payload,
+        },
+      };
+
     case LOGIN_REQUEST:
       return { ...state, loading: true, error: null }
 
@@ -28,3 +35,4 @@ const authReducer = (state = initialState, action) => {
 }
 
 export default authReducer
+

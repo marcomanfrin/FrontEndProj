@@ -32,3 +32,10 @@ export const loginUser = (email, password) => {
 export const logoutUser = () => ({
   type: LOGOUT,
 })
+
+export const UPDATE_VISITED = "auth/updateVisited";
+
+export const updateUserVisited = (visited) => ({
+  type: UPDATE_VISITED,
+  payload: visited,
+});

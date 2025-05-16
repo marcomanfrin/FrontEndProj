@@ -10,28 +10,24 @@ import { API_URL } from '../config';
 
 
 const Profile = () => {
-  const loggedUser = useSelector((state) => state.auth.currentUser);
+  const user = useSelector((state) => state.auth.currentUser);
   const [visitedBivacchi, setVisitedBivacchi] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loggedUser) {
+    if (!user) {
       navigate('/login');
       return;
     }
 
     const fetchUserAndVisited = async () => {
       try {
-        const userRes = await fetch(`${API_URL}/users/` + loggedUser.id);
-        if (!userRes.ok) throw new Error("Errore caricamento utente");
-        //const userData = await userRes.json();
-
         const res = await fetch(`${API_URL}/bivacchi`);
         if (!res.ok) throw new Error("Errore durante il recupero dei bivacchi");
         const allBivacchi = await res.json();
 
         const visited = allBivacchi.filter(bivacco =>
-          loggedUser.visited.includes(Number(bivacco.id))
+          user.visited.includes(bivacco.id)
         );
 
         setVisitedBivacchi(visited);
@@ -41,13 +37,13 @@ const Profile = () => {
     };
 
     fetchUserAndVisited();
-  }, [loggedUser, navigate]);
+  }, [user, navigate]);
 
   return (
     <Container className="mt-5">
       <Row>
         <Col md={5}>
-          {loggedUser && <UserCard user={loggedUser} />}
+          {user && <UserCard user={user} />}
         </Col>
         <Col md={7}>
           <h3 className="mb-3">Bivacchi visitati ({visitedBivacchi.length})</h3>
