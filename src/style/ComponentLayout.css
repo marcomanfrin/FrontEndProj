@@ -31,11 +31,14 @@
 }
 
 .weather-container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 0.5rem;
+    padding: 0.5rem;
 }
 
 .weather-card {
@@ -55,8 +58,10 @@
 
 @media (max-width: 1200px) {
   .weather-container {
+    padding: 0.25rem;
     flex-wrap: nowrap;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
   }
 
@@ -66,7 +71,7 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 575px) {
   .weather-container {
     padding: 0.25rem;
     display: flex;
