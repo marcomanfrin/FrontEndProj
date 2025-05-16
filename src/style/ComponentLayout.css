@@ -66,7 +66,7 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 540px) {
   .weather-container {
     padding: 0.25rem;
     display: flex;
