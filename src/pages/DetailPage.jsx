@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 
 // DetailPage component displays detailed information about a specific bivacco, including its details, weather, and comments.
 import Meteo from '../components/Meteo'; 
-import '../../style/ComponentLayout.css'
+import '../style/ComponentLayout.css'
 
 import { API_URL } from '../config'; 
 import VisitatoButton from '../components/visitedBtn';

@@ -3,7 +3,7 @@ import { Container, Button} from "react-bootstrap";
 
 import VisitatoButton from "./visitedBtn";
 import SavedButton from "./saveBtn";
-import '../../style/ComponentLayout.css'
+import '../style/ComponentLayout.css'
 
 function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
 
