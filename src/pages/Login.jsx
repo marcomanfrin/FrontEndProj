@@ -3,7 +3,7 @@ import { Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../redux/auth/authActions' 
 
-import './ComponentLayout.css'
+import '../../style/ComponentLayout.css'
 
 import { API_URL } from '../config';
 

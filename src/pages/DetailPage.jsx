@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
 import Meteo from '../components/Meteo'; 
-import './ComponentLayout.css';
+import '../../style/ComponentLayout.css'
 
 import { API_URL } from '../config'; 
 

@@ -1,7 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../redux/auth/authActions"; // assicurati che esista
-import React from "react";
+import { logoutUser } from "../redux/auth/authActions";
 
 function Navbar() {
   const currentUser = useSelector(state => state.auth.currentUser);

@@ -1,6 +1,6 @@
 import { Link } from "react-router"
 import { Container, Button} from "react-bootstrap";
-import './ComponentLayout.css';
+import '../../style/ComponentLayout.css'
 
 function Bivacco({ id, title, image, selectedBivacco, handleSelect }) {
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ComponentLayout.css";
+import '../../style/ComponentLayout.css'
 
 const API_KEY = "c3540be547721be3d08cf1f24a83a1e1";
 

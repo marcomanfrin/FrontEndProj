@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router";
 
 import Bivacco from "../components/Bivacco";
 import Filters from "../components/Filters";
-import './ComponentLayout.css';
+import '../../style/ComponentLayout.css'
 
 import { API_URL } from '../config';
 
