@@ -94,4 +94,4 @@ Questo progetto è distribuito con licenza MIT. Sentiti libero di riutilizzarlo 
 
 ---
 
-> Realizzato con ❤️ da [Tuo Nome](https://marcomanfrin.me)
+> Realizzato con ❤️ da [Marco Manfrin](https://marcomanfrin.me)
